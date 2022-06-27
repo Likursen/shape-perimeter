@@ -1,3 +1,8 @@
+import shapes.Circle;
+import shapes.Rectangle;
+import shapes.Shape;
+import shapes.Triangle;
+
 import java.util.Arrays;
 import java.util.List;
 
