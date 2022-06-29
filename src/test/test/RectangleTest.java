@@ -1,3 +1,5 @@
+package test;
+
 import exceptions.IncorrectShapeException;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,6 @@
 package shapes;
 
 import exceptions.IncorrectShapeException;
-import utils.Utils;
 
 public class Triangle extends Shape {
 
@@ -10,35 +9,20 @@ public class Triangle extends Shape {
     private final int thirdSide;
 
     public Triangle(int firstSide, int secondSide, int thirdSide) {
-        if (firstSide <= 0 || secondSide <= 0 || thirdSide <= 0) {
-            throw new IncorrectShapeException("incorrect triangle side length");
-        } else {
-            if (firstSide + secondSide < thirdSide
-                    || thirdSide + firstSide < secondSide
-                    || secondSide + thirdSide < firstSide) {
-                throw new IncorrectShapeException("incorrect triangle side length");
-            }
-        }
+        validateTriangle(firstSide, secondSide, thirdSide);
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
     }
 
-    public Triangle() {
-        System.out.println("Enter the length of thee sides for the triangle");
-        this.firstSide = Utils.scanNumber();
-        this.secondSide = Utils.scanNumber();
-        this.thirdSide = Utils.scanNumber();
-    }
-
     @Override
     public void calculateAndPrintPerimeter() {
-        System.out.println("shape.Triangle perimeter " + calculatePerimeter());
+        System.out.println("Triangle perimeter " + calculatePerimeter());
     }
 
     @Override
     public void calculateAndPrintArea() {
-        System.out.println("shape.Triangle area " + calculateArea());
+        System.out.println("Triangle area " + calculateArea());
     }
 
     public double calculateArea() {
@@ -49,5 +33,19 @@ public class Triangle extends Shape {
 
     public int calculatePerimeter() {
         return firstSide + secondSide + thirdSide;
+    }
+
+    private void validateTriangle(int firstSide, int secondSide, int thirdSide) {
+        validateSidesLengths(firstSide, secondSide, thirdSide);
+        validateTriangleSize(firstSide, secondSide, thirdSide);
+    }
+
+    private void validateTriangleSize(int firstSide, int secondSide, int thirdSide) {
+        if (!(firstSide + secondSide >= thirdSide
+                && thirdSide + firstSide >= secondSide
+                && secondSide + thirdSide >= firstSide)) {
+            throw new IncorrectShapeException("The sides of the triangle are set incorrectly. The sum of any two" +
+                    " sides must be greater than the third");
+        }
     }
 }

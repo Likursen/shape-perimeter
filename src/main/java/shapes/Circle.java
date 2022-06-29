@@ -1,33 +1,21 @@
 package shapes;
 
-import exceptions.IncorrectShapeException;
-import utils.Utils;
-
 public class Circle extends Shape {
-
     private final int radius;
 
-
     public Circle(int radius) {
-        if (radius <= 0) {
-            throw new IncorrectShapeException("incorrect circle radius");
-        }
+        validateSidesLengths(radius);
         this.radius = radius;
-    }
-
-    public Circle() {
-        System.out.println("Enter the radius for the circle");
-        this.radius = Utils.scanNumber();
     }
 
     @Override
     public void calculateAndPrintPerimeter() {
-        System.out.println("shape.Circle perimeter: " + calculatePerimeter());
+        System.out.println("Circle perimeter: " + calculatePerimeter());
     }
 
     @Override
     public void calculateAndPrintArea() {
-        System.out.println("shape.Circle area " + calculateArea());
+        System.out.println("Circle area " + calculateArea());
     }
 
     public double calculatePerimeter() {

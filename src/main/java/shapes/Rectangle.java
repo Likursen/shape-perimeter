@@ -1,42 +1,30 @@
 package shapes;
 
-import exceptions.IncorrectShapeException;
-import utils.Utils;
-
 public class Rectangle extends Shape {
-
-    private int firstSide;
-    private int secondSide;
+    private final int firstSide;
+    private final int secondSide;
 
     public Rectangle(int firstSide, int secondSide) {
-        if (firstSide <= 0 || secondSide <= 0) {
-            throw new IncorrectShapeException("incorrect rectangle side length");
-        }
+        validateSidesLengths(firstSide, secondSide);
         this.firstSide = firstSide;
         this.secondSide = secondSide;
     }
 
-    public Rectangle() {
-        System.out.println("Enter the length and width for the rectangle");
-        this.firstSide = Utils.scanNumber();
-        this.secondSide = Utils.scanNumber();
-    }
-
     @Override
     public void calculateAndPrintPerimeter() {
-        System.out.println("shape.Rectangle perimeter " + calculatePerimeter());
+        System.out.println("Rectangle perimeter " + calculatePerimeter());
     }
 
     @Override
     public void calculateAndPrintArea() {
-        System.out.println("shape.Rectangle area " + calculateArea());
+        System.out.println("Rectangle area " + calculateArea());
     }
 
     public int calculateArea() {
         return firstSide * secondSide;
     }
 
-    public int calculatePerimeter() throws IncorrectShapeException {
+    public int calculatePerimeter() {
         return (firstSide + secondSide) * 2;
     }
 }
